@@ -11,7 +11,7 @@ Before getting started, please also read the following sections.
 They will give you a better understanding of this project.
 
 > Note: Since all the parts are interconnected, you will not be able to run your code independently. 
-> Make the pull request after you thank you're done, and I'll approve it if it looks reasonable.
+> Make the pull request after you think you're done, and I'll approve it if it looks reasonable.
 
 ## General information
 ### Project information
