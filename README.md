@@ -20,7 +20,7 @@ This is the backend of the AI Study Guide project. It is a Django REST framework
 Endpoints:  
 - `/api/notes/`: CRUD (create, retrieve, update, delete) operations for notes
 - `/api/course/`: CRUD operations for courses
-- `/api/subject/{id}/generate-quiz/`: Generate a quiz for a subject
+- `/api/course/{id}/generate-quiz/`: Generate a quiz for a subject
 
 Data model:
 - `Note`: Represents a note
