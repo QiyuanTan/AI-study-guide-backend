@@ -1,10 +1,17 @@
 # AI Study Guide Backend
 
 ## Instructions
-Pick your favorite issue, assign it to yourself, and start working on it. You may select zero (if you really want to) and
-more than one issue. See the description of each issue for more details.  
-You need to create a new branch for contributing code, you may not change the `master` branch directly. After you finish your work, please create a pull request (PR) and assign me to review it.
-Before get started, please also read the following sections. They will give you a better understanding of this project.
+ - Pick your favorite issue, assign it to yourself, and start working on it.
+   You may select zero (if you really want to, and I'll be really sad) or more issues.
+ - Create a new branch on the `development` tab on the right side for contributing code.
+   You may not change the `master` branch directly.
+ -  After you finish your work, please create a pull request (PR) and assign me to review it. 
+
+Before getting started, please also read the following sections.
+They will give you a better understanding of this project.
+
+> Note: Since all the parts are interconnected, you will not be able to run your code independently. 
+> Make the pull request after you thank you're done, and I'll approve it if it looks reasonable.
 
 ## General information
 ### Project information
@@ -22,7 +29,7 @@ Data model:
   - `course`: The course the note belongs to
 - `Course`
   - `name`: The name of the course
-  - `instructor`: The instructor of the course
+  - `instructor`: Instructor's name
   - `syllabus`: The syllabus of the course (PDF)
 
 ### Project structure
