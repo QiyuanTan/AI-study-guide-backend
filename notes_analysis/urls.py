@@ -1,7 +1,10 @@
-# -*- coding = utf-8 -*-
-# @Time : 2025/5/1 20:50
-# @File : urls
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CourseViewSet
 
+router = DefaultRouter()
+router.register(r'course', CourseViewSet, basename='course')
 
-if __name__ == '__main__':
-    pass
+urlpatterns = [
+    path('', include(router.urls)),
+]

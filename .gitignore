@@ -78,3 +78,7 @@ docs/_build/
 
 # Local development
 local_settings.py
+
+# Virtual Environments
+.venv/
+venv/ 
