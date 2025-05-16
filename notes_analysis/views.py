@@ -4,7 +4,8 @@ from .models import Course
 from. serializers import CourseSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from .models import Note
+from .serializers import NoteSerializer
 
 # Create your views here.
 
@@ -30,3 +31,7 @@ class CourseViewSet(viewsets.ModelViewSet):
             "message": f"Quiz submitted for course '{course.name}'.",
             "received": submitted_data
         })
+
+class NoteViewSet(viewsets.ModelViewSet):
+    queryset=Note.objects.all()
+    serializer_class = NoteSerializer
