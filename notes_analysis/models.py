@@ -12,7 +12,7 @@ class Course(models.Model):
 class Note(models.Model):
     course = models.ForeignKey(Course, related_name='notes', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return
+        return self.title
