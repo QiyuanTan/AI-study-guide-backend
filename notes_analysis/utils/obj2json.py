@@ -1,6 +1,6 @@
 import json
 import fitz
-from .models import  *
+from notes_analysis.models import  *
 
 def get_notes(course: Course):
     return None

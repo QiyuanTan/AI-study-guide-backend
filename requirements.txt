@@ -8,3 +8,10 @@ djangorestframework==3.16.0
 sqlparse==0.5.3
 tzdata==2025.2
 pymupdf==1.23.5
+langgraph~=0.3.34
+langchain-google-genai~=2.1.4
+python-dotenv~=1.0.1
+langchain-community~=0.3.22
+langchain-core~=0.3.56
+langchain-experimental~=0.3.4
+pyjwt~=2.10.1

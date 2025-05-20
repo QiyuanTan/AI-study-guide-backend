@@ -81,4 +81,7 @@ local_settings.py
 
 # Virtual Environments
 .venv/
-venv/ 
+venv/
+
+notes_analysis/utils/.env
+notes_analysis/autograders

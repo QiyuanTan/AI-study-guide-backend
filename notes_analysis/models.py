@@ -16,3 +16,11 @@ class Note(models.Model):
 
     def __str__(self):
         return self.title
+
+class Question(models.Model):
+    content = models.TextField()
+    answer = models.TextField()
+    index = models.IntegerField()
+
+    def __str__(self):
+        return self.index
