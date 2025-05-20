@@ -2,8 +2,37 @@ import json
 import fitz
 from notes_analysis.models import  *
 
-def get_notes(course: Course):
-    return None
+def get_notes(course: Course, as_json = False):
+    """
+    Function that takes in a course(ORM object) and returns the notes as 
+    a string or string in JSON format that includes the title and the content.
+
+    Args:
+        course (Course): Course model instance
+        as_json (bool): If True, returns text as JSON string, otherwise as regular string
+
+    Returns:
+        the notes as a string or string in JSON format
+    """
+    # fetch all notes from the Course
+    notes = course.notes.all()
+
+    # check for empty notes
+    if not notes:
+        return "" if not as_json else "[]"
+    
+    # format the output based on string or json
+    if not as_json:
+        str_notes = ""
+        for note in notes:
+            str_notes += f"Title: {note.title}\n"
+            str_notes += f"Contents: {note.content}\n\n"
+        return str_notes
+    else:
+        json_notes = [{"Title": note.title, "Contents": note.content} for note in notes]
+        return json.dumps(json_notes)
+
+
 
 def get_syllabus(course: Course, as_json=False):
     """
