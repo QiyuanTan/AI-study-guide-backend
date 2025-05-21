@@ -69,11 +69,14 @@ class CourseViewSet(viewsets.ModelViewSet):
                 with open(f'{autograder_path}/student_submission.txt', 'w', encoding='utf-8') as f:
                     f.write(question['answer'])
 
-                process = subprocess.run(["python3",
+                process = subprocess.run(["python",
                                           "autograder.py",
-                                          "student_submission.txt"], capture_output=True, text=True)
+                                          "student_submission.txt"], capture_output=True, text=True, cwd=autograder_path)
 
                 result.append({'correct': process.returncode == 0, 'correct_option': ''})
+
+                print(f'autograded exited with return code: {process.returncode}')
+                print(process.stdout)
 
         Question.objects.all().delete()
 

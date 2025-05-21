@@ -21,13 +21,15 @@ quiz_generator_prompt_path = os.path.join(BASE_DIR, "utils", "prompts", "quiz_ge
 autograder_prompt_path = os.path.join(BASE_DIR, "utils", "prompts", "autograder_prompt.txt")
 
 
-def clean_autograder_script(raw_output: str) -> str:
+def clean_markdown(raw_output: str) -> str:
     """
-    Cleans model output by stripping any markdown formatting.
-    Assumes model may wrap the script in ```python ... ```
+    Cleans model output by removing any Markdown code block formatting.
+    Supports all markdown code blocks like ```lang\n...\n``` or just ```
     """
-    match = re.search(r"```(?:python)?\n([\s\S]*?)```", raw_output.strip())
+    # Match the first code block in the string regardless of language tag
+    match = re.search(r"^```[^\n]*\n([\s\S]*?)\n```$", raw_output.strip(), re.MULTILINE)
     return match.group(1).strip() if match else raw_output.strip()
+
 
 
 def generate_questions(notes, syllabus):
@@ -59,6 +61,7 @@ def generate_questions(notes, syllabus):
 
         if not state["curr_question_valid"]:
             # regenerate a single question
+            print("regenerating single question...")
             messages = [
                 SystemMessage(prompt),
                 HumanMessage(state["notes_summary"]),
@@ -81,14 +84,15 @@ def generate_questions(notes, syllabus):
             return state
         else:
             # generate all questions
+            print("generating questions...")
             messages = [
                 SystemMessage(prompt),
                 SystemMessage(f"The summary of notes and syllabus is as follows: {state['notes_summary']}"),
                 HumanMessage(f"Please generate {state['num_questions']} questions for me."),
             ]
 
-            response = llm.invoke(messages, temperature=0.55, max_tokens=1800*state["num_questions"])
-            question = json.loads(response.content)
+            response = llm.invoke(messages, temperature=0.55, max_tokens=5000*state["num_questions"])
+            question = json.loads(clean_markdown(response.content))
             state["questions"] = question["questions"]
 
             state["messages"].append(f"generated questions: {question}")
@@ -112,13 +116,15 @@ def generate_questions(notes, syllabus):
             HumanMessage(f"Here's the question you need to generate an autograder for:\n{json.dumps(question)}\n"),
         ]
 
+        print("Generating autograder script...")
+
         if not state["curr_question_valid"]:
             messages.append(AIMessage(json.dumps(state["questions"][index]["autograder_script"])))
             messages.append(SystemMessage(f"The question at index {index} is invalid. "))
             messages.append(HumanMessage(f"Here is the validator's feedback: {state['messages'][-1]}"))
 
         response = llm.invoke(messages, temperature=0.3)
-        response = clean_autograder_script(response.content)
+        response = clean_markdown(response.content)
         question["autograder_script"] = response
 
         state["messages"].append(f"generated autograder script for question {index}")

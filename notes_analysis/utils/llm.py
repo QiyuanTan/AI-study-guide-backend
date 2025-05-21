@@ -12,6 +12,6 @@ def get_llm():
     :return:
     """
     llm = ChatZhipuAI(
-        model="glm-4",
+        model="glm-4-plus",
     )
     return llm
