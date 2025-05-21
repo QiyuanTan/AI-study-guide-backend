@@ -84,4 +84,4 @@ local_settings.py
 venv/
 
 notes_analysis/utils/.env
-notes_analysis/autograders
+/autograders

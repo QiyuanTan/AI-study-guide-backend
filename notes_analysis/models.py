@@ -21,6 +21,7 @@ class Question(models.Model):
     content = models.TextField()
     answer = models.TextField()
     index = models.IntegerField()
+    type = models.CharField(max_length=50, choices=[('mcq', 'MCQ'), ('code', 'Code')])
 
     def __str__(self):
         return self.index
