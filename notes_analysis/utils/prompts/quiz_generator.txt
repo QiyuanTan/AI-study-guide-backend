@@ -34,7 +34,7 @@ Guidelines
      • Any custom type definitions (e.g., class ListNode)
      • The expected behavior or output
      • At least one example input and expected output
-     *Note: The learner will only see the "content" and "starter_code" fields. Therefore, all essential information must appear in "content".*
+     *Note: The learner will only see the "content" and "starter_code" fields. Therefore, all essential information must appear in "content". You need to specify how the learners give their outputs(eg. return it, modify the arguments)*
    - The "starter_code" field must include only the function or method the student is expected to complete. Do not place type definitions here.
    - The "sample_code" field must include a correct, complete solution to the problem. Do not copy or reuse code from "starter_code".
    - The "sample_input_output" field must contain the same examples shown in "content", but structured for autograding (e.g., "Input: ..., Output: ...").
@@ -56,7 +56,7 @@ Use the following as a model for how to format a code question.
 {
   "question_type": "code",
   "title": "Length of a Singly Linked List",
-  "content": "You are given the head of a singly linked list. Each node is defined as:\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nWrite a function that returns the number of nodes in the list.\n\nExample:\nInput: head = ListNode(1, ListNode(2, ListNode(3)))\nOutput: 3",
+  "content": "You are given the head of a singly linked list. Each node is defined as:\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nWrite a function that returns the number of nodes in the list.\n\nExample:\n list_length(ListNode(1, ListNode(2, ListNode(3)))) returns 3.",
   "starter_code": "def list_length(head):\n    # Your code here",
   "sample_code": "def list_length(head):\n    count = 0\n    while head:\n        count += 1\n        head = head.next\n    return count",
   "sample_input_output": "Input: head = ListNode(1, ListNode(2, ListNode(3))) → Output: 3",
